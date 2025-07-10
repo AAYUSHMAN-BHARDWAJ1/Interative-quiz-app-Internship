@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mind Masala - Brain Stroming Quiz</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+ <!-- 🔊 Simplified Sound Control -->
+<!-- <div class="sound-control">
+ 
+</div> -->
+
+
+<audio id="bg-music" autoplay loop>
+  <source src="/audio/Doraemon has the most soothing BGM.. - ᴄᴀᴛɴᴀᴘ.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="correctSound" preload="auto">
+  <source src="/audio/Correct Answer sound effect - Sound Effects.mp3" type="audio/mpeg">
+</audio>
+<audio id="wrongSound" preload="auto">
+  <source src="/audio/New_Project.wav" type="audio/mpeg">
+</audio>
+
+
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="stars"></div>
+        <div class="twinkling"></div>
+        <div class="clouds"></div>
+    </div>
+
+    <!-- Particles -->
+    <div id="particles"></div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-brain"></i>
+                <span>Mind<span class="highlight">Masala</span></span>
+            </div>
+            
+            <div class="user-stats" id="userStats">
+                <div class="stat-item">
+                    <i class="fas fa-coins"></i>
+                    <span id="totalCoins">0</span>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-trophy"></i>
+                    <span id="totalTrophies">0</span>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-fire"></i>
+                    <span id="bestStreak">0</span>
+                </div>
+            </div>
+             <div class="volume-icon-group">
+    <div class="volume-wrapper">
+      <button id="sfx-toggle">🔔</button>
+      <input type="range" id="sfx-volume" min="0" max="1" step="0.01" value="0.5">
+    </div>
+    <div class="volume-wrapper">
+      <button id="music-toggle">🎵</button>
+      <input type="range" id="bg-music-volume" min="0" max="1" step="0.01" value="0.5">
+    </div>
+  </div>
+        </header>
+
+        <!-- Home Screen -->
+        <div id="homeScreen" class="screen active">
+            <div class="hero">
+                <h1 class="hero-title">
+                    <span class="gradient-text">Challenge Your Mind</span>
+                    <div class="subtitle">Test your knowledge across multiple categories!</div>
+                </h1>
+            </div>
+
+            <div class="categories-grid">
+                <div class="category-card" data-category="mathematics">
+                    <div class="category-icon">🔢</div>
+                    <h3>Mathematics</h3>
+                    <p>Numbers, equations, and logic</p>
+                    <div class="difficulty-badges">
+                        <span class="badge easy">Easy: 10pts</span>
+                        <span class="badge medium">Medium: 15pts</span>
+                        <span class="badge hard">Hard: 20pts</span>
+                    </div>
+                    <button class="start-btn">Start Quiz</button>
+                </div>
+
+                <div class="category-card" data-category="science">
+                    <div class="category-icon">🧪</div>
+                    <h3>Science</h3>
+                    <p>Physics, chemistry, and biology</p>
+                    <div class="difficulty-badges">
+                        <span class="badge easy">Easy: 10pts</span>
+                        <span class="badge medium">Medium: 15pts</span>
+                        <span class="badge hard">Hard: 20pts</span>
+                    </div>
+                    <button class="start-btn">Start Quiz</button>
+                </div>
+
+                <div class="category-card" data-category="history">
+                    <div class="category-icon">🏛️</div>
+                    <h3>History</h3>
+                    <p>Past events and civilizations</p>
+                    <div class="difficulty-badges">
+                        <span class="badge easy">Easy: 10pts</span>
+                        <span class="badge medium">Medium: 15pts</span>
+                        <span class="badge hard">Hard: 20pts</span>
+                    </div>
+                    <button class="start-btn">Start Quiz</button>
+                </div>
+
+                <div class="category-card" data-category="geography">
+                    <div class="category-icon">🌍</div>
+                    <h3>Geography</h3>
+                    <p>Countries, capitals, and landmarks</p>
+                    <div class="difficulty-badges">
+                        <span class="badge easy">Easy: 10pts</span>
+                        <span class="badge medium">Medium: 15pts</span>
+                        <span class="badge hard">Hard: 20pts</span>
+                    </div>
+                    <button class="start-btn">Start Quiz</button>
+                </div>
+
+                <div class="category-card" data-category="technology">
+                    <div class="category-icon">💻</div>
+                    <h3>Technology</h3>
+                    <p>Programming, AI, and innovation</p>
+                    <div class="difficulty-badges">
+                        <span class="badge easy">Easy: 10pts</span>
+                        <span class="badge medium">Medium: 15pts</span>
+                        <span class="badge hard">Hard: 20pts</span>
+                    </div>
+                    <button class="start-btn">Start Quiz</button>
+                </div>
+
+                <div class="category-card" data-category="sports">
+                    <div class="category-icon">⚽</div>
+                    <h3>Sports</h3>
+                    <p>Games, athletes, and records</p>
+                    <div class="difficulty-badges">
+                        <span class="badge easy">Easy: 10pts</span>
+                        <span class="badge medium">Medium: 15pts</span>
+                        <span class="badge hard">Hard: 20pts</span>
+                    </div>
+                    <button class="start-btn">Start Quiz</button>
+                </div>
+            </div>
+
+            <!-- Trophies Display -->
+            <div class="trophies-section" id="trophiesSection">
+                <h2>🏆 Your Achievements</h2>
+                <div class="trophies-grid" id="trophiesGrid"></div>
+            </div>
+        </div>
+
+        <!-- Quiz Screen -->
+        <div id="quizScreen" class="screen">
+            <div class="quiz-header">
+                <button class="back-btn" id="backBtn">
+                    <i class="fas fa-arrow-left"></i> Back
+                </button>
+                <div class="quiz-info">
+                    <div class="category-name" id="categoryName"></div>
+                    <div class="question-counter" id="questionCounter">1 / 20</div>
+                </div>
+                <div class="current-stats">
+                    <div class="stat">
+                        <i class="fas fa-coins"></i>
+                        <span id="currentCoins">0</span>
+                    </div>
+                    <div class="stat">
+                        <i class="fas fa-fire"></i>
+                        <span id="currentStreak">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timers">
+                <div class="timer question-timer">
+                    <i class="fas fa-clock"></i>
+                    <span>Question: </span>
+                    <span id="questionTime">30</span>s
+                    <div class="timer-bar">
+                        <div class="timer-fill" id="questionTimerFill"></div>
+                    </div>
+                </div>
+                <div class="timer category-timer">
+                    <i class="fas fa-hourglass-half"></i>
+                    <span>Category: </span>
+                    <span id="categoryTime">10:00</span>
+                    <div class="timer-bar">
+                        <div class="timer-fill" id="categoryTimerFill"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+
+            <div class="question-container">
+                <div class="question-card">
+                    <div class="difficulty-indicator" id="difficultyIndicator"></div>
+                    <h2 class="question-text" id="questionText"></h2>
+                    <div class="answers-grid" id="answersGrid"></div>
+                    <div class="feedback" id="feedback"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Screen -->
+        <div id="resultsScreen" class="screen">
+            <div class="results-container">
+                <div class="results-header">
+                    <div class="trophy-animation" id="trophyAnimation">🏆</div>
+                    <h1 class="results-title">Quiz Complete!</h1>
+                </div>
+
+                <div class="score-display">
+                    <div class="score-circle">
+                        <div class="percentage" id="finalPercentage">0%</div>
+                        <div class="score-label">Score</div>
+                    </div>
+                </div>
+
+                <div class="results-stats">
+                    <div class="stat-card">
+                        <div class="stat-value" id="finalScore">0</div>
+                        <div class="stat-label">Points Earned</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="correctAnswers">0</div>
+                        <div class="stat-label">Correct Answers</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="finalStreak">0</div>
+                        <div class="stat-label">Best Streak</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="timeBonus">0</div>
+                        <div class="stat-label">Time Bonus</div>
+                    </div>
+                </div>
+
+                <div class="new-achievements" id="newAchievements">
+                    <h3>🎉 New Achievements!</h3>
+                    <div class="achievements-list" id="achievementsList"></div>
+                </div>
+
+                <div class="results-actions">
+                    <button class="action-btn primary" id="retryBtn">
+                        <i class="fas fa-redo"></i> Retry Quiz
+                    </button>
+                    <button class="action-btn secondary" id="homeBtn">
+                        <i class="fas fa-home"></i> Back to Home
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="script.js"></script>
+
+
+</body>
+</html>
